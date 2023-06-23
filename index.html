@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task2_DT-tech</title>
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                var task = data.tasks[0]; // Get the first task from the tasks array
+                var assets = task.assets;
+
+                // Create HTML elements and populate with JSON values
+                for (var i = 0; i < assets.length; i++) {
+                    var asset = assets[i];
+
+                    // Call the renderAsset function to get the HTML template for the asset
+                    var assetTemplate = renderAsset(asset);
+
+                    // Append the asset template to the project HTML page or a specific container element
+                    // Example:
+                    document.getElementById('assetsContainer').innerHTML += assetTemplate;
+                }
+                function renderAsset(asset) {
+                    var assetTemplate = `<div class="card">
+                                            <div class="sub-card">
+                                                <div class="card-head">
+                                                    ${asset.asset_title}
+                                                </div>
+                                                <div class="info">
+                                                    i
+                                                </div>
+                                            </div>
+                                            <div class="card-text">
+                                                <span>Description:</span>${asset.asset_description}
+                                            </div>
+                                            <div>
+                                                ${asset.asset_content_type === 'video' ? `<iframe src="${asset.asset_content}"></iframe>` : ''}
+                                                ${asset.asset_content_type === 'threadbuilder' ? '<input type="text" placeholder="Enter your thread">' : ''}
+                                                ${asset.asset_content_type === 'article' ? '<textarea rows="5" cols="50" placeholder="Write your article"></textarea>' : ''}
+                                            </div>
+                                        </div>`;
+
+                    return assetTemplate;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="app">
+        <div class="left-side" onclick="toggle()">
+            <div class="top-left" style="text-align: center;">
+                <p style="color:white;display: none;">Journey Board</p>
+            </div>
+            <div class="one">1</div>
+            <ul style="display: none;">
+                <li>
+                    Explore the world of management
+                    <ul>
+                        <li> Technical Project Management</li>
+                        <li>Threadbuild</li>
+                        <li>Structure your pointers</li>
+                        <li>4SA Method</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="right-side">
+            <div class="top-right">
+                <img src="x-01.png" alt="x">
+                <div style="max-width: 1ch;margin-inline: auto;">
+                    N
+                    o
+                    t
+                    i
+                    c
+                    e
+
+                    B
+                    o
+                    a
+                    r
+                    d
+                </div>
+            </div>
+        </div>
+        <div class="navbar">
+            <img src="logo1.png" alt="logo">
+            <div class="icons">
+                <img src="house.png" alt="house">
+                <img src="tools.png" alt="tools">
+                <img src="bell.png" alt="bell">
+                <img src="ellipse-53.png" alt="photo">
+                <div class="dots">
+                    <img src="dot.png" alt="">
+                    <img src="dot.png" alt="">
+                    <img src="dot.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="content" onclick="t_back()">
+            <div class="first-line">
+                <div style="margin-block: 2rem;">Technical Project Management</div>
+                <button>Submit</button>
+            </div>
+            <div class="basic-card">
+                <div class="basic-head">
+                    Explore the world of management
+                </div>
+                <div class="basic-text">As a project manager, you play an important reole in leading a project through
+                    initiation, planning, execution, monitoring, controlling and completion. How? Do you want to manage
+                    each and every step of your life?
+                </div>
+            </div>
+            <div class="main-cards">
+                <div id="assetsContainer"></div>
+            </div>
+        </div>
+        <div class="q-icons">
+            <div class="queries meet"><img src="meeting-1.png" alt=""></div>
+            <div class="queries question"><img src="question-mark (2) 1.png" alt=""></div>
+            <div class="queries schedule"><img src="schedule (1) 1.png" alt=""></div>
+
+        </div>
+    </div>
+</body>
+
+</html>
