@@ -16,18 +16,17 @@
         fetch('data.json')
             .then(response => response.json())
             .then(data => {
-                var task = data.tasks[0]; // Get the first task from the tasks array
+                var task = data.tasks[0];
                 var assets = task.assets;
 
-                // Create HTML elements and populate with JSON values
+
                 for (var i = 0; i < assets.length; i++) {
                     var asset = assets[i];
 
-                    // Call the renderAsset function to get the HTML template for the asset
+
                     var assetTemplate = renderAsset(asset);
 
-                    // Append the asset template to the project HTML page or a specific container element
-                    // Example:
+
                     document.getElementById('assetsContainer').innerHTML += assetTemplate;
                 }
                 function renderAsset(asset) {
